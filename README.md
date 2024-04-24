@@ -8,7 +8,7 @@ Message Now is a bulk SMS service provided by Message Central. It allows busines
 ### MessageCentral Website https://www.messagecentral.com
 
 - What are the benefits of using Message Now?
-			* By using Message Now, you can reach a large audience quickly and cost-effectively. It enables personalized communication, helps increase customer 				engagement, and supports various use cases such as promotional campaigns, alerts, notifications, reminders, and more.
+		* By using Message Now, you can reach a large audience quickly and cost-effectively. It enables personalized communication, helps increase customer 			engagement, and supports various use cases such as promotional campaigns, alerts, notifications, reminders, and more.
 
 - Can I schedule SMS campaigns in advance?
 			* Yes, Message Now offers the option to schedule messages for future delivery. This feature allows you to plan and automate your SMS campaigns, ensuring messages are sent at the most appropriate times for maximum impact.
