@@ -19,12 +19,12 @@ Message Now is a bulk SMS service provided by Message Central. It allows busines
 
 ### * You can integrate using language: Java, Python, C#, NodeJS, Ruby and more.
 	
-### * VerifyNow : Verify Now is a user authentication service provided by Message Central, which enables businesses to verify users' phone numbers using a One-Time Password (OTP) sent via SMS.
-	- [Verify NOW](https://www.messagecentral.com/product/verify-now/overview-india)
+#### * VerifyNow : Verify Now is a user authentication service provided by Message Central, which enables businesses to verify users' phone numbers using a One-Time Password (OTP) sent via SMS.
+[Verify NOW](https://www.messagecentral.com/product/verify-now/overview-india)
 
-### * SMS Now : Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
-	- [SMS NOW](https://www.messagecentral.com/product/message-now/overview-india)
+#### * SMS Now : Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
+[SMS NOW](https://www.messagecentral.com/product/message-now/overview-india)
 
-### * Whatsapp Now : WhatsApp Now is a comprehensive solution that integrates live customer support and WhatsApp marketing through WhatsApp Business APIs. It enables businesses to provide instant assistance to customers and leverage the power of WhatsApp for effective marketing campaigns.
-	- [Whatsapp NOW](https://www.messagecentral.com/product/whatsapp-now/overview-india)
+#### * Whatsapp Now : WhatsApp Now is a comprehensive solution that integrates live customer support and WhatsApp marketing through WhatsApp Business APIs. It enables businesses to provide instant assistance to customers and leverage the power of WhatsApp for effective marketing campaigns.
+[Whatsapp NOW](https://www.messagecentral.com/product/whatsapp-now/overview-india)
 
