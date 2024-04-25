@@ -24,9 +24,6 @@ Two endpoints are defined in One Time Password SMS API: <br>
 - POST /verification/v2/verification/send : Sends an SMS with the desired message and an OTP code to the received phone number
 - POST /verification/v2/verification/validateOtp : Verifies the received code as input is valid for the given authenticationId.
 
-**Authentication**
-
-Security access token is required for this API.
 
 ## Authentication and Authorization
 
