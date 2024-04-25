@@ -3,14 +3,12 @@
 ## Message Central OTP SMS Verification API
 ### Message Central is a CPaaS solution with OTP SMS APIs, SMS APIs, and WhatsApp marketing platform. You can reach customers across the globe and enable engaging and effective communication strategies.
 
-
-### Send SMS with Lightning-Fast Delivery
-
-Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
-
 ### MessageCentral Website https://www.messagecentral.com
-#### * VerifyNow : Verify Now is a user authentication service provided by Message Central, which enables businesses to verify users' phone numbers using a One-Time Password (OTP) sent via SMS.
-#### * You can integrate using language: Java, Python, C#, NodeJS, Ruby and more.
+
+#### Send SMS with Lightning-Fast Delivery
+Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
+#### VerifyNow : Verify Now is a user authentication service provided by Message Central, which enables businesses to verify users' phone numbers using a One-Time Password (OTP) sent via SMS.
+#### You can integrate using language: Java, Python, C#, NodeJS, Ruby and more.
 	
 
 [Verify NOW](https://www.messagecentral.com/product/verify-now/overview-india)
