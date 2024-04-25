@@ -53,6 +53,7 @@ Authentication is performed using an auth token. You can request an auth token b
 | curl --location--request POST'https://cpaas.messagecentral.com/verification/v2/verification/send?countryCode=XX&customerId=****************&flowType=SMS&mobileNumber=971X8X2X23&otpLength=4'\--header 'authToken: eyJhbGciOiJIUzUxMiJ9.eyJzdLIiOiJDLTMzNDMyQTVGNDlGNzQwNCIsImlhdCI6MTY5NjMxNDQzNiwiZXhwIjoxNjk2OTE5MjM2fQ.<br>UDSi6Mpjr5INVGm4SRFrPAFpxEanH64AD6JkiAv2zIReANR6pgmGEoo-T4AXXmgpqXjP56NYh6mFvLQzI__uaA'  |
 | The response will be: <br> 200 <br>   {  <br>“responseCode”:200,<br>  “message”: “SUCCESS”,  <br>“data”:{      <br>“verificationId”: “20”,    <br>“mobileNumber”: “8846735392”,      <br>“responseCode”: “200”,      <br>“errorMessage”: null,      <br> “timeout”: “60”,      <br>“smsCLI”: null,      <br>“transactionId”: null    <br>}<br>}
 <br>
+
 | Snippet Validate code  |
 | ----------------------------------------------- |
 | curl --location'https://cpaas.messagecentral.com/verification/v2/verification/validateOtp?countryCode=XX&mobileNumber=971X8X2X23&verificationId=XX&customerId=************&code=XXXX'\--header 'authToken: eyJhbGciOiJIUzUxMiJ9.eyJzdLIiODMyQTVGNDlGNzQwNCIsImlhdCIMxNDQzNiwiZXhwIjoxNjk2OTE5MjM2fQ.UDSi6Mpjr<br>5INVGmpxEanH64AD6JkiAv2zIReANR6pgmGEoo-T4AXXmgpqXjP56NYh6mFvLQzI__uaA'  |
