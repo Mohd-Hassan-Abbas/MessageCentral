@@ -1,7 +1,10 @@
 # MessageCentral
-Global Messaging  | Made Effortless | Send SMS and WhatsApp messages to customers anywhere in the world!
 
-# Send SMS with Lightning-Fast Delivery
+## Message Central OTP SMS Verification API
+### Message Central is a CPaaS solution with OTP SMS APIs, SMS APIs, and WhatsApp marketing platform. You can reach customers across the globe and enable engaging and effective communication strategies.
+
+
+### Send SMS with Lightning-Fast Delivery
 
 Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
 
@@ -39,7 +42,7 @@ Security access token is required for this API.
 
 ## Authentication and Authorization
 
-One Time Password SMS API uses OAUTH 2.0 client credentials grant which is applicable for server to server use cases involving trusted partners or clients without any protected user data involved. [[1]](#1)
+Authentication is performed using an auth token. You can request an auth token by sending a request to the auth token API with your MessageCentral customer ID and key. The key is the base64 encoded password.
 
 
 ### Code Snippets
@@ -54,7 +57,7 @@ Please note, the credentials for API authentication purposes need to be adjusted
 | ----------------------------------------------- |
 | curl --location--request POST'https://cpaas.messagecentral.com/verification/v2/verification/send?countryCode=XX&customerId=****************&flowType=SMS&mobileNumber=971X8X2X23&otpLength=4'\--header 'authToken: eyJhbGciOiJIUzUxMiJ9.eyJzdLIiOiJDLTMzNDMyQTVGNDlGNzQwNCIsImlhdCI6MTY5NjMxNDQzNiwiZXhwIjoxNjk2OTE5MjM2fQ.<br>UDSi6Mpjr5INVGm4SRFrPAFpxEanH64AD6JkiAv2zIReANR6pgmGEoo-T4AXXmgpqXjP56NYh6mFvLQzI__uaA'  |
 | The response will be: <br> 200 <br>   {  <br>“responseCode”:200,<br>  “message”: “SUCCESS”,  <br>“data”:{      <br>“verificationId”: “20”,    <br>“mobileNumber”: “8846735392”,      <br>“responseCode”: “200”,      <br>“errorMessage”: null,      <br> “timeout”: “60”,      <br>“smsCLI”: null,      <br>“transactionId”: null    <br>}<br>}
-|
+
 
 <br>
 
@@ -62,7 +65,7 @@ Please note, the credentials for API authentication purposes need to be adjusted
 | ----------------------------------------------- |
 | curl --location'https://cpaas.messagecentral.com/verification/v2/verification/validateOtp?countryCode=XX&mobileNumber=971X8X2X23&verificationId=XX&customerId=************&code=XXXX'\--header 'authToken: eyJhbGciOiJIUzUxMiJ9.eyJzdLIiODMyQTVGNDlGNzQwNCIsImlhdCIMxNDQzNiwiZXhwIjoxNjk2OTE5MjM2fQ.UDSi6Mpjr<br>5INVGmpxEanH64AD6JkiAv2zIReANR6pgmGEoo-T4AXXmgpqXjP56NYh6mFvLQzI__uaA'  |
 | The response will be: <br> {  <br>"responseCode": 200,  <br>"message": "SUCCESS",  <br>"data": {    <br>"verificationId":   "20",      <br>"mobileNumber":   "8846735392",<br>"verificationStatus":   "VERIFICATION_COMPLETED",      <br>"responseCode":  "200",      <br>"errorMessage":   null,      <br>"transactionId":   null,      <br>"authToken": eyJhbGciOiJIUzUxMiJ9.eyJzdLIiDMyQTVGNDlGNzQwNCIsImlhNjMxNDQzNiwiZXhwIjoxNjk2OTE5MjM2fQ.UDSi6Mpjr<br>5INVGm4SRFrP64AD6JkiAv2zIReANR6pgmGEoo-T4AXXmgpqXjP56NYh6mFvLQzI__uaA<br>}<br>}
-|
+
 <br>
 
 #### * SMS Now : Message Now is a bulk SMS service provided by Message Central. It allows businesses to send large volumes of text messages to their customers or subscribers simultaneously, enabling efficient and effective communication.
