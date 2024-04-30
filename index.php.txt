@@ -1,0 +1,142 @@
+<?php
+require __DIR__ . '/vendor/autoload.php';
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
+$customerID = "C-45539F39A449437";
+$email = "abhishekkaushik68@gmail.com";
+$password = "Wesee@123";
+$baseURL = "https://cpaas-staging.messagecentral.com";
+$authToken = null;
+$verificationId = null;
+$verificationStatus = null;
+function parseJSON($jsonString, $key)
+{
+$jsonObject = json_decode($jsonString, true);
+return $jsonObject[$key] ?? null;
+}
+function generateAuthToken($httpClient, $requestFactory)
+{
+global $password, $baseURL, $customerID, $email,
+$authToken;
+$base64String = base64_encode($password);
+$url =
+"{$baseURL}/auth/v1/authentication/token?country=IN&customerId
+={$customerID}&email={$email}&key={$base64String}&scope=NEW";
+$request = $requestFactory->createRequest('GET', $url);
+try {
+$response = $httpClient->sendRequest($request);
+$responseString = $response->getBody()->getContents();
+$authToken = parseJSON($responseString, "token");
+return $authToken;
+} catch (ClientExceptionInterface $e) {
+echo "Error generating auth token. Response code:
+{$e->getCode()}\n";
+return null;
+}
+}
+function sendOtp($httpClient, $requestFactory, $authToken,
+$countryCode, $mobileNumber)
+{
+global $baseURL, $customerID, $verificationId;
+$url =
+"{$baseURL}/verification/v2/verification/send?countryCode={$co
+untryCode}&customerId={$customerID}&flowType=SMS&mobileNumber=
+{$mobileNumber}";
+$request = $requestFactory->createRequest('POST', $url,
+['authToken' => $authToken]);
+try {
+$response = $httpClient->sendRequest($request);
+$responseString = $response->getBody()->getContents();
+$verificationId = parseJSON(parseJSON($responseString,
+"data"), "verificationId");
+return $verificationId;
+} catch (ClientExceptionInterface $e) {
+echo "Error sending OTP. Response code:
+{$e->getCode()}\n";
+return null;
+}
+}
+function validateOtp($httpClient, $requestFactory, $authToken,
+$otpCode, $countryCode, $mobileNumber)
+{
+global $baseURL, $customerID, $verificationId,
+$verificationStatus;
+$url =
+"{$baseURL}/verification/v2/verification/validateOtp?countryCo
+de={$countryCode}&mobileNumber={$mobileNumber}&verificationId=
+{$verificationId}&customerId={$customerID}&code={$otpCode}";
+$request = $requestFactory->createRequest('GET', $url,
+['authToken' => $authToken]);
+try {
+$response = $httpClient->sendRequest($request);
+$responseString = $response->getBody()->getContents();
+$verificationStatus = parseJSON($responseString,
+"verificationStatus");
+return $verificationStatus;
+} catch (ClientExceptionInterface $e) {
+echo "Error validating OTP. Response code:
+{$e->getCode()}\n";
+return null;
+}
+}
+$httpClient = Psr18ClientDiscovery::find();
+$requestFactory = Psr17FactoryDiscovery::findRequestFactory();
+$server = new \React\Http\Server(function
+(\Psr\Http\Message\ServerRequestInterface $request) use
+($httpClient, $requestFactory) {
+global $customerID, $email, $password, $baseURL,
+$authToken, $verificationId, $verificationStatus;
+$path = $request->getUri()->getPath();
+$method = $request->getMethod();
+$query = $request->getQueryParams();
+$body = json_decode($request->getBody()->getContents(),
+true);
+if ($method === "POST" && $path === "/sendotp" &&
+isset($body["countryCode"]) && isset($body["mobileNumber"])) {
+$countryCode = $body["countryCode"];
+$mobileNumber = $body["mobileNumber"];
+generateAuthToken($httpClient, $requestFactory);
+$verificationId = sendOtp($httpClient,
+$requestFactory, $authToken, $countryCode, $mobileNumber);
+return new \React\Http\Message\Response(
+200,
+['Content-Type' => 'application/json'],
+json_encode(["message" => $verificationId ? "Otp
+sent! Successfully" : "Bad Request"])
+);
+} elseif ($method === "GET" && $path === "/validateotp" &&
+isset($query["countryCode"]) && isset($query["mobileNumber"])
+&& isset($query["otpCode"])) {
+$countryCode = $query["countryCode"];
+$mobileNumber = $query["mobileNumber"];
+$otpCode = $query["otpCode"];
+generateAuthToken($httpClient, $requestFactory);
+$verificationStatus = validateOtp($httpClient,
+$requestFactory, $authToken, $otpCode, $countryCode,
+$mobileNumber);
+return new \React\Http\Message\Response(
+200,
+['Content-Type' => 'application/json'],
+json_encode(["message" => $verificationStatus ===
+"VERIFICATION_COMPLETED" ? "Otp verification Done!" : "Bad
+Request"])
+);
+} else {
+return new \React\Http\Message\Response(
+404,
+['Content-Type' => 'text/plain'],
+"Not Found"
+);
+}
+});
+$socket = new \React\Socket\Server('127.0.0.1:3000');
+$server->listen($socket);
+echo "Server running at http://localhost:3000/\n";
+$loop = \React\EventLoop\Factory::create();
+$loop->run()
